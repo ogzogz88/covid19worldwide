@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { FormControl, InputLabel, Select, MenuItem, Card, CardContent } from '@material-ui/core'
 import axios from 'axios'
-import './App.css';
-import InfoBox from './components/InfoBox';
+import './App.css'
+import InfoBox from './components/InfoBox'
 import Map from './components/Map'
+import Table from './components/Table'
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [countryName, setCountryName] = useState('worldwide');
   const [countryInfo, setCountryInfo] = useState({});
+  const [tableData, setTableData] = useState([]);
 
   const handleChange = async (e) => {
     const countryName = e.target.value;
     const URL = countryName === "worldwide" ? "https://disease.sh/v3/covid-19/all" :
       `https://disease.sh/v3/covid-19/countries/${countryName}`;
-
     await axios.get(URL)
       .then(response => response.data)
       .then(data => {
@@ -36,6 +37,8 @@ function App() {
             id: idNumber++
           }));
           setCountries(countries);
+          setTableData(data);
+          console.log(data);
         });
     }
     getCountriesData();
@@ -125,9 +128,10 @@ function App() {
 
         <Map />
       </div>
-      <Card className="app__right">
+      <Card className="app__right" style={{ borderTop: "5px solid #eb5569" }}>
         <CardContent>
-          <h3>Live Cases by Country</h3>
+          <h3>Total Cases by Country</h3>
+          <Table countries={tableData} />
           <h3>Worldwide new cases</h3>
         </CardContent>
       </Card>

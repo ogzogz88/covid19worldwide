@@ -1,0 +1,28 @@
+.table {
+    margin-top: 1rem;
+    overflow: scroll;
+    height: 300px;
+}
+
+.table tr {
+    color: grey;
+    display: flex;
+    justify-content: space-between;
+}
+
+.table tr td:nth-child(2) {
+    margin-right: auto;
+}
+
+.table tr td:nth-child(1) {
+    margin-right: 0.5rem;
+}
+
+.table tr td:nth-child(3) {
+    margin-right: 0.5rem;
+}
+
+.table tr:nth-child(2n+1) {
+    background: #ddd;
+    color: black;
+}
