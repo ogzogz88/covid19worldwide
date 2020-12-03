@@ -5,6 +5,7 @@ import './App.css'
 import InfoBox from './components/InfoBox'
 import Map from './components/Map'
 import Table from './components/Table'
+import LineGraph from './components/LineGraph'
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -132,7 +133,10 @@ function App() {
         <CardContent>
           <h3>Total Cases by Country</h3>
           <Table countries={tableData} />
-          <h3>Worldwide new cases</h3>
+          <h3>Worldwide Cases, Recovered and Deaths for Last 4 Months</h3>
+          <LineGraph />
+          <LineGraph dataType="recovered" />
+          <LineGraph dataType="deaths" />
         </CardContent>
       </Card>
     </div>

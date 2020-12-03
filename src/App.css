@@ -58,7 +58,7 @@ body {
 }
 
 .infobox__wrapper {
-    flex-basis: 25%;
+    flex-basis: 22%;
     max-width: 230px;
     min-width: 180px;
 }
@@ -68,7 +68,7 @@ body {
 
 .MuiCardHeader-content .MuiCardHeader-title {
     font-weight: 600;
-    font-size: 1.25rem;
+    font-size: 1rem;
 }
 
 .MuiCardContent-root .MuiTypography-root.MuiTypography-body2 {
@@ -115,12 +115,18 @@ body {
     .app__title {
         font-size: 1.5rem;
     }
+    .MuiCardHeader-content .MuiCardHeader-title {
+        font-size: 1rem;
+    }
 }
 
 @media screen and (max-width:395px) {
     .infobox__wrapper {
         flex-basis: 100%;
         max-width: 390px;
+    }
+    .MuiCardHeader-content .MuiCardHeader-title {
+        font-size: 1.25rem;
     }
 }
 
