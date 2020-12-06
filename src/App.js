@@ -6,12 +6,17 @@ import InfoBox from './components/InfoBox'
 import Map from './components/Map'
 import Table from './components/Table'
 import LineGraph from './components/LineGraph'
+import 'leaflet/dist/leaflet.css'
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [countryName, setCountryName] = useState('worldwide');
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
+  const [mapCenter, setMapCenter] = useState({ lat: 34, lng: -40 });
+  const [mapZoom, setMapZoom] = useState(3);
+  const [mapCountries, setMapCountries] = useState([]);
+  const [dataType, setDataType] = useState("cases");
 
   const handleChange = async (e) => {
     const countryName = e.target.value;
@@ -22,6 +27,16 @@ function App() {
       .then(data => {
         setCountryName(countryName);
         setCountryInfo(data);
+
+        if (countryName === 'worldwide') {
+          setMapCenter({ lat: 34, lng: -40 });
+          setMapZoom(2);
+          return;
+        }
+        setMapCenter({ lat: data.countryInfo.lat, lng: data.countryInfo.long });
+        console.log("positionstate");
+        console.log(mapCenter);
+        setMapZoom(4);
       });
   }
 
@@ -30,7 +45,6 @@ function App() {
       await axios.get('https://disease.sh/v3/covid-19/countries')
         .then(response => response.data)
         .then(data => {
-          console.log(data);
           let idNumber = 0;
           const countries = data.map(element => ({
             name: element.country,
@@ -38,8 +52,8 @@ function App() {
             id: idNumber++
           }));
           setCountries(countries);
+          setMapCountries(data);
           setTableData(data);
-          console.log(data);
         });
     }
     getCountriesData();
@@ -84,8 +98,10 @@ function App() {
         </div>
 
         <div className="app__stats">
-          <div className="infobox__wrapper">
+          <div className="infoBox">
             <InfoBox
+              clicked={"cases" === dataType}
+              onClick={e => setDataType("cases")}
               img={'assets/caseImg.png'}
               title={"Cases"}
               caseTitle={"Daily Number"}
@@ -95,8 +111,10 @@ function App() {
 
             />
           </div>
-          <div className="infobox__wrapper">
+          <div className="infoBox">
             <InfoBox
+              clicked={"recovered" === dataType}
+              onClick={e => setDataType("recovered")}
               img={'assets/recovered.png'}
               title={"Recovered"}
               caseTitle={"Daily Number"}
@@ -105,18 +123,10 @@ function App() {
               totalNumber={countryInfo.recovered ? countryInfo.recovered.toLocaleString() : ''}
             />
           </div>
-          <div className="infobox__wrapper">
+          <div className="infoBox">
             <InfoBox
-              img={'assets/current.png'}
-              title={"Current"}
-              caseTitle={"Active"}
-              totalTitle={"Critical"}
-              casesNumber={countryInfo.active ? countryInfo.active.toLocaleString() : ''}
-              totalNumber={countryInfo.critical ? countryInfo.critical.toLocaleString() : ''}
-            />
-          </div>
-          <div className="infobox__wrapper">
-            <InfoBox
+              clicked={"deaths" === dataType}
+              onClick={e => setDataType("deaths")}
               img={'assets/death.png'}
               title={"Deaths"}
               caseTitle={"Daily Number"}
@@ -127,18 +137,23 @@ function App() {
           </div>
         </div>
 
-        <Map />
+        <Map
+          center={mapCenter}
+          zoom={mapZoom}
+          countries={mapCountries}
+          dataType={dataType}
+        />
       </div>
-      <Card className="app__right" style={{ borderTop: "5px solid #eb5569" }}>
-        <CardContent>
-          <h3>Total Cases by Country</h3>
-          <Table countries={tableData} />
-          <h3>Worldwide Cases, Recovered and Deaths for Last 4 Months</h3>
-          <LineGraph />
-          <LineGraph dataType="recovered" />
-          <LineGraph dataType="deaths" />
-        </CardContent>
-      </Card>
+      <div className="app__right">
+        <Card style={{ borderTop: "5px solid #9090ff" }}>
+          <CardContent>
+            <h3>Total Cases by Country</h3>
+            <Table countries={tableData} />
+            <h3>Worldwide Info For Last 4 Months</h3>
+            <LineGraph dataType={dataType} />
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }

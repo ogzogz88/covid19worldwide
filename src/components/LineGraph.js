@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Line } from 'react-chartjs-2'
 import numeral from 'numeral'
 
-function LineGraph({ dataType = "cases" }) {
+function LineGraph({ dataType }) {
     const [data, setData] = useState({});
     // we  will get last 120 days accumulated worldwide data, as cases, recovered and death
     // API endpoint https://disease.sh/v3/covid-19/historical/all
@@ -16,7 +16,7 @@ function LineGraph({ dataType = "cases" }) {
                 radius: 0
             },
         },
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         tooltips: {
             mode: "index",
             intersect: false,
@@ -31,7 +31,7 @@ function LineGraph({ dataType = "cases" }) {
                 {
                     type: "time",
                     time: {
-                        format: "MM/DD/YY",
+                        parser: "MM/DD/YY",
                         tooltipFormat: "ll"
                     },
                 },
@@ -51,7 +51,7 @@ function LineGraph({ dataType = "cases" }) {
         }
 
     };
-    const formatChartData = (data, dataType = "cases") => {
+    const formatChartData = (data, dataType) => {
         const chartData = [];
         let lastDataPoint;
         for (let date in data[dataType]) {
@@ -67,6 +67,23 @@ function LineGraph({ dataType = "cases" }) {
         };
         return chartData;
     };
+
+    const text = {
+        cases: "Cases",
+        recovered: "Recovered Cases",
+        deaths: "Deaths",
+
+    }
+    const color = {
+        cases: "rgba(235,85,105,0.4)",
+        recovered: "rgba(70,178,150,0.4)",
+        deaths: "rgba(82,82,82,0.4)",
+    }
+    const border = {
+        cases: "rgba(235,85,105,0.9)",
+        recovered: "rgba(70,178,150,0.9)",
+        deaths: "rgba(82,82,82,0.9)",
+    }
 
     useEffect(() => {
         const getLineData = async () => {
@@ -85,12 +102,14 @@ function LineGraph({ dataType = "cases" }) {
         <div>
             {data?.length > 0 &&
                 <Line
+                    width={500}
+                    height={250}
                     options={options}
                     data={{
                         datasets: [{
-                            label: dataType === "recovered" ? "Recovered Cases" : dataType === "deaths" ? "Deaths" : "New Cases",
-                            backgroundColor: dataType === "recovered" ? 'rgba(70,178,150,0.4)' : dataType === "deaths" ? 'rgba(82,82,82,0.4)' : 'rgba(235,85,105,0.4)',
-                            borderColor: dataType === "recovered" ? 'rgba(70,178,150,1)' : dataType === "deaths" ? 'rgba(82,82,82,1)' : 'rgba(235,85,105,1)',
+                            label: text[dataType],
+                            backgroundColor: color[dataType],
+                            borderColor: border[dataType],
                             data: data
                         }]
                     }}

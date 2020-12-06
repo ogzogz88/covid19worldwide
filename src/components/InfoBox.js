@@ -1,17 +1,15 @@
 import React from 'react'
 import { Card, CardHeader, CardMedia, CardContent, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import './InfoBox.css'
 
 const colors = {
     colorCases: "#eb5569",
     colorRecovered: "#46b29d",
-    colorCurrent: "#5c5b5b",
     colorDeaths: "#000"
 };
 const useStyles = makeStyles(() => ({
     root: {
-
-
     },
     media: {
         height: 50,
@@ -21,11 +19,12 @@ const useStyles = makeStyles(() => ({
         paddingBottom: 0,
     }
 }));
-function InfoBox({ title, caseTitle, casesNumber, totalTitle, totalNumber, img }) {
+function InfoBox({ title, caseTitle, casesNumber, totalTitle, totalNumber, img, onClick, clicked }) {
     const classes = useStyles();
     const date = new Date().toLocaleDateString();
+
     return (
-        <Card className={classes.root} style={{ borderTop: `5px solid ${colors[`color${title}`]}` }}>
+        <Card onClick={onClick} className={classes.root} style={clicked ? { borderTop: `5px solid ${colors[`color${title}`]}` } : {}}>
             <CardHeader
                 className={classes.header}
                 avatar={
@@ -41,7 +40,7 @@ function InfoBox({ title, caseTitle, casesNumber, totalTitle, totalNumber, img }
             />
             <CardContent>
                 <h5> {caseTitle}</h5>
-                <Typography variant="body2" color="textSecondary" component="p">
+                <Typography className="infoBox__cases" variant="body2" color="textSecondary" component="p">
                     {title === "Current" ? "" : "+"} {casesNumber ? casesNumber : '0'}
                 </Typography>
                 <h5>{totalTitle} </h5>

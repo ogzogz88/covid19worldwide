@@ -1,11 +1,46 @@
-import React, { Component } from 'react'
+import React from 'react'
+import './Map.css'
+import { MapContainer as LeafletMap, TileLayer, useMap } from 'react-leaflet'
+import ShowDataOnMap from './ShowDataOnMap'
 
-export default class Map extends Component {
-    render() {
-        return (
-            <div>
-                <h1>Mapppp</h1>
-            </div>
-        )
-    }
+// draw interactive tooltips on the map
+const dataTypeColors = {
+    cases: {
+        hex: "#9090ff",
+        multiplier: 400
+    },
+    recovered: {
+        hex: "#46b29d",
+        multiplier: 600
+    },
+    deaths: {
+        hex: "#424141",
+        multiplier: 2000
+    },
+};
+
+//refresh the map. Recommended from leaflet docs
+function ChangeView({ center, zoom }) {
+    const map = useMap();
+    map.setView(center, zoom);
+    return null;
 }
+function Map({ countries, dataType, center, zoom }) {
+
+    return (
+        <div className="map">
+            <LeafletMap center={center} zoom={zoom}>
+                <ChangeView center={center} zoom={zoom} />
+                <TileLayer
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+
+                {ShowDataOnMap(countries, dataType, dataTypeColors)}
+
+            </LeafletMap>
+        </div>
+    )
+
+}
+export default Map;

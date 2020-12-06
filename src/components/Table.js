@@ -21,11 +21,14 @@ function Table({ countries }) {
 
                 sortedCountries.map(({ country, cases }) => {
                     return (
+
                         <tr key={country}>
                             <td><strong>{++rank}</strong></td>
                             <td >{country}</td>
                             <td><strong>{cases.toLocaleString()}</strong></td>
                         </tr>
+
+
                     );
                 })}
         </div>

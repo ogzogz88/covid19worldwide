@@ -1,0 +1,53 @@
+.infoBox {
+    flex: 1;
+    cursor: pointer;
+}
+
+.infoBox:not(:last-child) {
+    margin-right: 1.5rem;
+}
+
+.infoBox__cases {
+    color: #9090ff!important;
+    font-size: 1.5rem!important;
+}
+
+
+/*
+#eb5569
+#46b29d
+#424141
+*/
+
+@media screen and (max-width:490px) {
+    .infoBox:not(:last-child) {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width:668px) {
+    .infoBox:nth-child(2) {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .infoBox {
+        margin-bottom: 0.5rem;
+    }
+}
+
+
+/*MUI built-in classes*/
+
+.MuiCardContent-root:last-child {
+    padding-bottom: 0;
+}
+
+.MuiCardHeader-content .MuiCardHeader-title {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+
+/*MUI built-in classes END */

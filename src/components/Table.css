@@ -1,7 +1,7 @@
 .table {
-    margin: 1rem auto;
+    margin: 1rem auto 2rem;
     overflow: scroll;
-    height: 300px;
+    height: 335px;
 }
 
 .table tr {
