@@ -18,7 +18,12 @@ function ShowDataOnMap(data, dataType, dataTypeColors) {
                     }
                 >
                     <Popup>
-                        {`${dataType.toUpperCase()}:  ${country[dataType].toLocaleString()}`}
+                        <img className="app__flag" src={country?.countryInfo?.flag} alt="" />
+                        <h3>{country.country}</h3>
+                        <div>
+                            {`${dataType.toUpperCase()} ${country[dataType].toLocaleString()}`}
+                        </div>
+
                     </Popup>
                 </Circle>
 
