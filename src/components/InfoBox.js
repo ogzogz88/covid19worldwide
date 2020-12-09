@@ -6,10 +6,11 @@ import './InfoBox.css'
 const colors = {
     colorCases: "#eb5569",
     colorRecovered: "#46b29d",
-    colorDeaths: "#000"
+    colorDeaths: "#555"
 };
 const useStyles = makeStyles(() => ({
     root: {
+
     },
     media: {
         height: 50,
@@ -24,7 +25,7 @@ function InfoBox({ title, caseTitle, casesNumber, totalTitle, totalNumber, img, 
     const date = new Date().toLocaleDateString();
 
     return (
-        <Card onClick={onClick} className={classes.root} style={clicked ? { borderTop: `5px solid ${colors[`color${title}`]}` } : {}}>
+        <Card onClick={onClick} className={classes.root} style={clicked ? { border: `5px solid ${colors[`color${title}`]}` } : { border: "5px solid white" }}>
             <CardHeader
                 className={classes.header}
                 avatar={

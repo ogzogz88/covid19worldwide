@@ -11,7 +11,7 @@ function Selector() {
     return (
         <AppContext.Consumer>
             {context => (
-                <FormControl className="app__dropdown main__selector">
+                <FormControl className="app__dropdown app__dropdown--main">
                     <Select
                         variant="outlined"
                         id="covid-countries-select"

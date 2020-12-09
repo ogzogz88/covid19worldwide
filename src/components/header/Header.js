@@ -7,14 +7,11 @@ import {
     ListItem,
     ListItemText,
     Hidden,
-    FormControl,
-    InputLabel,
-    Select,
-    MenuItem
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core"
 import SideDrawer from "./SideDrawer"
 import Selector from '../selector/Selector'
+import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles({
     navbarDisplayFlex: {
@@ -33,6 +30,7 @@ const useStyles = makeStyles({
 });
 
 const navLinks = [
+    { title: `home`, path: `/` },
     { title: `linecharts`, path: `/linecharts` },
     { title: `tables`, path: `/tables` },
 ];
@@ -43,13 +41,13 @@ const Header = () => {
     return (
         <AppBar position="static">
             <Toolbar>
-                <Container maxWidth="xlg" className={classes.navbarDisplayFlex}>
+                <Container maxWidth="lg" className={classes.navbarDisplayFlex}>
                     <List className="app__title">
-                        <a href={'/'} key={'covid19ww'} className={classes.linkText}>
+                        <NavLink to={'/'} key={'covid19ww'} className={classes.linkText}>
                             <ListItem button>
                                 <ListItemText primary={'covid19ww'} />
                             </ListItem>
-                        </a>
+                        </NavLink>
                     </List>
                     <Hidden xsDown>
                         <List
@@ -58,18 +56,17 @@ const Header = () => {
                             className={classes.navDisplayFlex}
                         >
                             {navLinks.map(({ title, path }) => (
-                                <a href={path} key={title} className={classes.linkText}>
+                                <NavLink to={path} key={title} className={classes.linkText}>
+
                                     <ListItem button>
                                         <ListItemText primary={title} />
                                     </ListItem>
-                                </a>
+                                </NavLink>
                             ))}
 
                             <Selector />
                         </List>
                     </Hidden>
-
-
                     <Hidden smUp>
                         <Selector />
                         <SideDrawer navLinks={navLinks} />

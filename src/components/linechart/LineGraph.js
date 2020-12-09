@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Line } from 'react-chartjs-2'
 import numeral from 'numeral'
 
-function LineGraph({ dataType, countryName }) {
+function LineGraph({ dataType, countryName, dataDay }) {
     const [data, setData] = useState({});
     // we  will get last 120 days accumulated worldwide data, as cases, recovered and death
     // API endpoint https://disease.sh/v3/covid-19/historical/all
@@ -88,7 +88,7 @@ function LineGraph({ dataType, countryName }) {
     useEffect(() => {
         const getLineData = async () => {
             if (countryName === "worldwide") {
-                await axios.get("https://disease.sh/v3/covid-19/historical/all?lastdays=120")
+                await axios.get(`https://disease.sh/v3/covid-19/historical/all?lastdays=${dataDay}`)
                     .then(response => response.data)
                     .then(data => {
                         console.log('line data');
@@ -97,7 +97,7 @@ function LineGraph({ dataType, countryName }) {
                         setData(chartData);
                     });
             } else {
-                await axios.get(`https://disease.sh/v3/covid-19/historical/${countryName}?lastdays=120`)
+                await axios.get(`https://disease.sh/v3/covid-19/historical/${countryName}?lastdays=${dataDay}`)
                     .then(response => response.data)
                     .then(data => {
                         console.log('line data');
@@ -110,13 +110,13 @@ function LineGraph({ dataType, countryName }) {
 
         }
         getLineData();
-    }, [dataType, countryName]);
+    }, [dataType, countryName, dataDay]);
     return (
         <div>
             {data?.length > 0 &&
                 <Line
-                    width={500}
-                    height={250}
+                    width={460}
+                    height={230}
                     options={options}
                     data={{
                         datasets: [{

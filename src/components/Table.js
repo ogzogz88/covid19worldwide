@@ -18,7 +18,6 @@ function Table({ countries }) {
     return (
         <div className="table">
             {
-
                 sortedCountries.map(({ country, cases }) => {
                     return (
 
@@ -27,8 +26,6 @@ function Table({ countries }) {
                             <td >{country}</td>
                             <td><strong>{cases.toLocaleString()}</strong></td>
                         </tr>
-
-
                     );
                 })}
         </div>

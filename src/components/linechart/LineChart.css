@@ -1,0 +1,27 @@
+.linechart__container .MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-2 {
+    margin: 0;
+}
+
+.MuiFormControl-root.app__dropdown.app__dropdown--chart {
+    background: white;
+    color: red;
+    border-radius: 4px;
+    margin: 5px;
+}
+
+#chart {
+    background: #909bf9;
+}
+
+.linechart__container--grid {
+    margin: .5rem 0;
+}
+
+@media screen and (min-width:600px) {
+    .linechart__container--grid.second {
+        margin-right: .5rem;
+    }
+    .linechart__container--grid.third {
+        margin-left: .5rem;
+    }
+}
