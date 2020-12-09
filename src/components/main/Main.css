@@ -22,13 +22,15 @@ body {
 }
 
 .app__left {
-    flex: 0.9;
+    flex: 0.95;
 }
 
-.app__header .app__dropdown {
-    min-width: 90px;
-    margin-left: 0.5rem;
-}
+
+/* .app__header .app__dropdown {
+    min-width: 60px;
+    max-width: 50px;
+    margin-left: 0.5rem; 
+} */
 
 .app__header {
     display: flex;
@@ -61,4 +63,12 @@ body {
     .app {
         flex-direction: column;
     }
+}
+
+.makeStyles-navDisplayFlex-2 {
+    align-items: center;
+}
+
+.makeStyles-navbarDisplayFlex-1 {
+    align-items: center;
 }

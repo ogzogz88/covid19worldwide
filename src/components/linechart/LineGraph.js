@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Line } from 'react-chartjs-2'
 import numeral from 'numeral'
 
-function LineGraph({ dataType }) {
+function LineGraph({ dataType, countryName }) {
     const [data, setData] = useState({});
     // we  will get last 120 days accumulated worldwide data, as cases, recovered and death
     // API endpoint https://disease.sh/v3/covid-19/historical/all
@@ -87,17 +87,30 @@ function LineGraph({ dataType }) {
 
     useEffect(() => {
         const getLineData = async () => {
-            await axios.get("https://disease.sh/v3/covid-19/historical/all?lastdays=120")
-                .then(response => response.data)
-                .then(data => {
-                    console.log('line data');
-                    console.log(data);
-                    const chartData = formatChartData(data, dataType);
-                    setData(chartData);
-                });
+            if (countryName === "worldwide") {
+                await axios.get("https://disease.sh/v3/covid-19/historical/all?lastdays=120")
+                    .then(response => response.data)
+                    .then(data => {
+                        console.log('line data');
+                        console.log(data);
+                        const chartData = formatChartData(data, dataType);
+                        setData(chartData);
+                    });
+            } else {
+                await axios.get(`https://disease.sh/v3/covid-19/historical/${countryName}?lastdays=120`)
+                    .then(response => response.data)
+                    .then(data => {
+                        console.log('line data');
+                        console.log(data);
+                        const chartData = formatChartData(data.timeline, dataType);
+                        setData(chartData);
+                    });
+
+            }
+
         }
         getLineData();
-    }, [dataType]);
+    }, [dataType, countryName]);
     return (
         <div>
             {data?.length > 0 &&
