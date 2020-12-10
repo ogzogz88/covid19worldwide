@@ -121,6 +121,11 @@ body {
     margin-right: -12px;
 }
 
+.MuiList-root.makeStyles-navDisplayFlex-2.MuiList-padding,
+.MuiList-root.app__title.MuiList-padding {
+    align-items: center;
+}
+
 .text-center {
     text-align: center;
 }
