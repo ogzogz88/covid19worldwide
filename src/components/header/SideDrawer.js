@@ -3,13 +3,18 @@ import {
     IconButton,
     List,
     ListItem,
-    ListItemText
+    ListItemText,
+    ListItemIcon
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Menu } from "@material-ui/icons";
 import * as React from "react";
 import { useState } from "react";
 import { NavLink } from 'react-router-dom';
+import AssessmentRoundedIcon from '@material-ui/icons/AssessmentRounded';
+import TableChartRoundedIcon from '@material-ui/icons/TableChartRounded';
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
+
 
 const useStyles = makeStyles({
     list: {
@@ -21,6 +26,12 @@ const useStyles = makeStyles({
         color: `black`
     }
 });
+
+const homeIcon = {
+    home: <HomeRoundedIcon />,
+    linecharts: <AssessmentRoundedIcon />,
+    tables: <TableChartRoundedIcon />
+}
 
 const SideDrawer = ({ navLinks }) => {
     const classes = useStyles();
@@ -48,6 +59,9 @@ const SideDrawer = ({ navLinks }) => {
                 {navLinks.map(({ title, path }) => (
                     <NavLink to={path} key={title} className={classes.linkText}>
                         <ListItem button>
+                            <ListItemIcon >
+                                {homeIcon[title]}
+                            </ListItemIcon>
                             <ListItemText primary={title} />
                         </ListItem>
                     </NavLink>
