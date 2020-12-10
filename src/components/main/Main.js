@@ -1,26 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import { FormControl, InputLabel, Select, MenuItem, Card, CardContent, Container } from '@material-ui/core'
+import { Container } from '@material-ui/core'
 import axios from 'axios'
 import './Main.css'
-import InfoBox from '../InfoBox'
-import Map from '../Map'
+import InfoBox from '../infobox/InfoBox'
+import Map from '../map/Map'
 import 'leaflet/dist/leaflet.css'
 import AppContext from '../../context/AppContext'
 
 function Main() {
 
     const [mapCountries, setMapCountries] = useState([]);
-
-
-
-
     useEffect(() => {
         const getCountriesData = async () => {
             await axios.get('https://disease.sh/v3/covid-19/countries')
                 .then(response => response.data)
                 .then(data => {
-
-
                     setMapCountries(data);
                 });
         }
@@ -31,35 +25,7 @@ function Main() {
         <div className="app">
             <div className="app__container">
                 <Container maxWidth="lg" >
-                    {/* <div className="app__header">
-                    <h1 className="app__title"><span className="app__covid">Covid19</span>info</h1>
-                    <img className="app__flag" src={countryInfo?.countryInfo?.flag ?? "assets/worldFlag.png"} alt="" />
-                    <FormControl className="app__dropdown">
-                        <InputLabel id="covid-countries">Select</InputLabel>
-                        <Select
-                            variant="outlined"
-                            labelId="covid-countries"
-                            id="covid-countries-select"
-                            value={countryName}
-                            onChange={handleChange}
-                            label="Country"
-                        >
-                            <MenuItem id={1000} value="worldwide">
-                                <em>Worldwide</em>
-                            </MenuItem>
-                            {countries.length > 0 &&
-                                countries.map((country) => {
-                                    return (
-                                        <MenuItem key={country.id} value={country.name}>{country.name}</MenuItem>
-                                    );
-                                })
-                            }
-                        </Select>
-                    </FormControl>
-                </div> */}
-
                     <div className="app__stats">
-
                         <div className="infoBox">
                             <AppContext.Consumer>
                                 {context => (
@@ -72,9 +38,7 @@ function Main() {
                                         totalTitle={"Total Number"}
                                         casesNumber={context.countryInfo.todayCases ? context.countryInfo.todayCases.toLocaleString() : ''}
                                         totalNumber={context.countryInfo.cases ? context.countryInfo.cases.toLocaleString() : ''}
-
                                     />
-
                                 )}
                             </AppContext.Consumer>
                         </div>
@@ -91,7 +55,6 @@ function Main() {
                                         casesNumber={context.countryInfo.todayRecovered ? context.countryInfo.todayRecovered.toLocaleString() : ''}
                                         totalNumber={context.countryInfo.recovered ? context.countryInfo.recovered.toLocaleString() : ''}
                                     />
-
                                 )}
                             </AppContext.Consumer>
                         </div>
@@ -108,7 +71,6 @@ function Main() {
                                         casesNumber={context.countryInfo.todayDeaths ? context.countryInfo.todayDeaths.toLocaleString() : ''}
                                         totalNumber={context.countryInfo.deaths ? context.countryInfo.deaths.toLocaleString() : ''}
                                     />
-
                                 )}
                             </AppContext.Consumer>
                         </div>
@@ -125,16 +87,6 @@ function Main() {
                     </AppContext.Consumer>
                 </Container>
             </div>
-            {/* <div className="app__right">
-                <Card style={{ borderTop: "5px solid #9090ff" }}>
-                    <CardContent>
-                        <h3>Total Cases by Country</h3>
-                        <Table countries={tableData} />
-                        <h3>Worldwide Info For Last 4 Months</h3>
-                        <LineGraph dataType={dataType} />
-                    </CardContent>
-                </Card>
-            </div> */}
         </div>
     );
 }

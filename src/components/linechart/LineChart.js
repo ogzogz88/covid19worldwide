@@ -41,7 +41,7 @@ function LineChart() {
                             <div className="app__header">
                                 <img className="app__flag" src={context.countryInfo?.countryInfo?.flag ?? "assets/worldFlag.png"} alt="" />
 
-                                <h3 className="app__title--linechart">{capitalizeFirstLetter(context.countryName)}{' '}<span className="app__covid">{chartSelector}</span></h3>
+                                <h3 className="app__title--linechart">{capitalizeFirstLetter(context.countryName)}{' '}<span className="app__covid--linechart">{chartSelector}</span></h3>
                                 <FormControl className="app__dropdown app__dropdown--chart" id="chart">
                                     <Select
 

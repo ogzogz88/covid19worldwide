@@ -10,11 +10,11 @@ const dataTypeColors = {
         multiplier: 100
     },
     recovered: {
-        hex: "#46b29d",
+        hex: "#9090ff",
         multiplier: 200
     },
     deaths: {
-        hex: "#424141",
+        hex: "#9090ff",
         multiplier: 600
     },
 };
@@ -26,7 +26,6 @@ function ChangeView({ center, zoom }) {
     return null;
 }
 function Map({ countries, dataType, center, zoom }) {
-
     return (
         <div className="map">
             <LeafletMap center={center} zoom={zoom}>
@@ -35,9 +34,7 @@ function Map({ countries, dataType, center, zoom }) {
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-
                 {ShowDataOnMap(countries, dataType, dataTypeColors)}
-
             </LeafletMap>
         </div>
     )

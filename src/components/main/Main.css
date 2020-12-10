@@ -81,6 +81,15 @@ body {
 }
 
 .app__covid {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.app__covid span {
+    color: #9090ff;
+}
+
+.app__covid--linechart {
     color: #9090ff;
 }
 
