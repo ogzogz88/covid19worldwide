@@ -13,6 +13,8 @@ import AppContext from '../../context/AppContext'
 import './LineChart.css'
 
 
+const capitalizeFirstLetter = s => s.charAt(0).toUpperCase() + s.slice(1);
+
 function LineChart() {
     const [chartSelector, setChartSelector] = useState("Last 1 Year");
     const selectorValues = ["Last 10 Months", "Last 8 Months", "Last 6 Months", "Last 3 Months", "Last 1 Month"];
@@ -37,7 +39,9 @@ function LineChart() {
                     <div className="app__container">
                         <Container maxWidth="lg" className="linechart__container">
                             <div className="app__header">
-                                <h3 className="app__title">{context.countryName.toUpperCase()}{' '}<span className="app__covid">{chartSelector}</span></h3>
+                                <img className="app__flag" src={context.countryInfo?.countryInfo?.flag ?? "assets/worldFlag.png"} alt="" />
+
+                                <h3 className="app__title--linechart">{capitalizeFirstLetter(context.countryName)}{' '}<span className="app__covid">{chartSelector}</span></h3>
                                 <FormControl className="app__dropdown app__dropdown--chart" id="chart">
                                     <Select
 
@@ -63,21 +67,21 @@ function LineChart() {
                         <Container maxWidth="lg" className="linechart__container">
                             <Grid container >
                                 <Grid item xs={12} >
-                                    <Card style={{ borderTop: "5px solid #eb5569" }} className="linechart__container--grid">
+                                    <Card style={context.borderStyles.cases} className="linechart__container--grid">
                                         <CardContent>
                                             <LineGraph countryName={context.countryName} dataType={"cases"} dataDay={dataDay} />
                                         </CardContent>
                                     </Card>
                                 </Grid>
                                 <Grid item xs={12} sm={6} >
-                                    <Card style={{ borderTop: "5px solid #46b29d" }} className="linechart__container--grid second">
+                                    <Card style={context.borderStyles.recovered} className="linechart__container--grid second">
                                         <CardContent>
                                             <LineGraph countryName={context.countryName} dataType={"recovered"} dataDay={dataDay} />
                                         </CardContent>
                                     </Card>
                                 </Grid>
                                 <Grid item xs={12} sm={6} >
-                                    <Card style={{ borderTop: "5px solid #555" }} className="linechart__container--grid third">
+                                    <Card style={context.borderStyles.deaths} className="linechart__container--grid third">
                                         <CardContent>
                                             <LineGraph countryName={context.countryName} dataType={"deaths"} dataDay={dataDay} />
                                         </CardContent>
@@ -87,8 +91,7 @@ function LineChart() {
                         </Container>
                     </div>
                 </div>
-            )
-            }
+            )}
         </AppContext.Consumer >
     )
 }

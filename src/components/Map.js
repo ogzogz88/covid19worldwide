@@ -7,15 +7,15 @@ import ShowDataOnMap from './ShowDataOnMap'
 const dataTypeColors = {
     cases: {
         hex: "#9090ff",
-        multiplier: 400
+        multiplier: 100
     },
     recovered: {
         hex: "#46b29d",
-        multiplier: 600
+        multiplier: 200
     },
     deaths: {
         hex: "#424141",
-        multiplier: 2000
+        multiplier: 600
     },
 };
 

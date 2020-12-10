@@ -56,6 +56,17 @@ function AppProvider(props) {
             });
     }
 
+    const borderStyles = {
+        cases: { borderTop: "5px solid #eb5569" },
+        recovered: { borderTop: "5px solid #46b29d" },
+        deaths: { borderTop: "5px solid #555" }
+    }
+    const colors = {
+        cases: "#eb5569",
+        recovered: "#46b29d",
+        deaths: "#555"
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -66,8 +77,9 @@ function AppProvider(props) {
                 mapZoom,
                 countries,
                 dataType,
-                setDataType
-
+                setDataType,
+                borderStyles,
+                colors
             }}
         >
             {props.children}

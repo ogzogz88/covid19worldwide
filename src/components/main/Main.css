@@ -42,6 +42,10 @@ body {
     flex: 0.95;
 }
 
+.app__container--table {
+    margin-top: 2rem;
+}
+
 
 /* .app__header .app__dropdown {
     min-width: 60px;
@@ -62,17 +66,22 @@ body {
 }
 
 .app__flag {
-    height: 25px;
-    margin-left: auto;
+    height: 50px;
+    border-radius: 4px;
 }
 
-.app__title {
-    /* margin-left: 0.5rem; */
+.app__title {}
+
+.app__title--linechart {
+    margin-left: 2rem;
+}
+
+.app__title--table {
+    margin-left: 0;
 }
 
 .app__covid {
     color: #9090ff;
-    font-weight: 900;
 }
 
 .infoBox {
@@ -99,4 +108,8 @@ body {
 
 .MuiButtonBase-root.MuiIconButton-root.MuiIconButton-edgeStart {
     margin-right: -12px;
+}
+
+.text-center {
+    text-align: center;
 }

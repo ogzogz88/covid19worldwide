@@ -45,7 +45,7 @@ const Header = () => {
                     <List className="app__title">
                         <NavLink to={'/'} key={'covid19ww'} className={classes.linkText}>
                             <ListItem button>
-                                <ListItemText primary={'covid19ww'} />
+                                <h1>covid19ww</h1>
                             </ListItem>
                         </NavLink>
                     </List>
