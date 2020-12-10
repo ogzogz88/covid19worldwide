@@ -20,7 +20,8 @@ const useStyles = makeStyles({
     },
     navDisplayFlex: {
         display: `flex`,
-        justifyContent: `space-between`
+        justifyContent: `space-between`,
+        alignItems: `center`
     },
     linkText: {
         textDecoration: `none`,
@@ -41,7 +42,7 @@ const Header = () => {
     return (
         <AppBar position="static">
             <Toolbar>
-                <Container maxWidth="lg" className={classes.navbarDisplayFlex}>
+                <Container maxWidth="lg" className={classes.navbarDisplayFlex} >
                     <List className="app__title">
                         <NavLink to={'/'} key={'covid19ww'} className={classes.linkText}>
                             <ListItem button>
@@ -55,6 +56,7 @@ const Header = () => {
                             component="nav"
                             aria-labelledby="main navigation"
                             className={classes.navDisplayFlex}
+
                         >
                             {navLinks.map(({ title, path }) => (
                                 <NavLink to={path} key={title} className={classes.linkText}>
