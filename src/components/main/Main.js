@@ -23,7 +23,7 @@ function Main() {
     }, []);
     return (
         <div className="app">
-            <div className="app__container">
+            <div className="app__container app__container--main">
                 <Container maxWidth="lg" >
                     <div className="app__stats">
                         <div className="infoBox">

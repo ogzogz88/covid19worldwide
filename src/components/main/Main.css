@@ -46,6 +46,10 @@ body {
     margin-top: 2rem;
 }
 
+.app__container--main {
+    margin-top: 2rem;
+}
+
 
 /* .app__header .app__dropdown {
     min-width: 60px;
@@ -69,8 +73,6 @@ body {
     height: 50px;
     border-radius: 4px;
 }
-
-.app__title {}
 
 .app__title--linechart {
     margin-left: 2rem;

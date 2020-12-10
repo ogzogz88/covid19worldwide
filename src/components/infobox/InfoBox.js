@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardHeader, CardMedia, CardContent, Typography } from '@material-ui/core'
+import { Card, CardHeader, CardMedia, CardContent, Typography, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import './InfoBox.css'
 
@@ -40,14 +40,20 @@ function InfoBox({ title, caseTitle, casesNumber, totalTitle, totalNumber, img, 
                 subheader={date}
             />
             <CardContent>
-                <h5> {caseTitle}</h5>
-                <Typography className="infoBox__cases" variant="body2" color="textSecondary" component="p">
-                    {title === "Current" ? "" : "+"} {casesNumber ? casesNumber : '0'}
-                </Typography>
-                <h5>{totalTitle} </h5>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    {totalNumber ? totalNumber : '0'}
-                </Typography>
+                <Grid container className="text-center">
+                    <Grid item xs={6} >
+                        <h5 className="infobox__case-title"> {caseTitle}</h5>
+                        <Typography className="infoBox__cases" variant="body2" color="textSecondary" component="p">
+                            {title === "Current" ? "" : "+"} {casesNumber ? casesNumber : '0'}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6} >
+                        <h5 className="infobox__case-title">{totalTitle} </h5>
+                        <Typography className="infoBox__total" variant="body2" color="textSecondary" component="p">
+                            {totalNumber ? totalNumber : '0'}
+                        </Typography>
+                    </Grid>
+                </Grid>
             </CardContent>
         </Card>
     )
