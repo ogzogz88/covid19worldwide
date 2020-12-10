@@ -1,3 +1,17 @@
+# Covid19WW : Covid19 cases tracker application.
+
+You can see cases, recovered and deaths information, based on country.
+You can use World map, linecharts and tables for more detailed information.
+
+## Tech Stack
+
+This project is based on React Hooks, Context API, react-leaflet, react-chartjs2, Material UI, CSS BEM convention, axios and react-router.
+Covid19WW uses https://disease.sh/ API to get the Covıd19 information.
+
+## Live project
+
+It is deployed with firebase and live at https://covid-19-tracker-2f88e.web.app/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
