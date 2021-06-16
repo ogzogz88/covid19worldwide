@@ -42,8 +42,8 @@ const Header = () => {
     return (
         <AppBar position="static">
             <Toolbar>
-                <Container maxWidth="lg" className={classes.navbarDisplayFlex} >
-                    <List className="app__title">
+                <Container maxWidth="lg" className={classes.navbarDisplayFlex} style={{ alignItems: "center" }}>
+                    <List className="app__title" >
                         <NavLink to={'/'} key={'covid19ww'} className={classes.linkText}>
                             <ListItem button>
                                 <h1 className="app__covid">covid19<span>ww</span> </h1>

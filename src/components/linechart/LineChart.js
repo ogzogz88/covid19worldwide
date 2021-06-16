@@ -18,7 +18,7 @@ const capitalizeFirstLetter = s => s.charAt(0).toUpperCase() + s.slice(1);
 function LineChart() {
     const [chartSelector, setChartSelector] = useState("Last 1 Year");
     const selectorValues = ["Last 10 Months", "Last 8 Months", "Last 6 Months", "Last 3 Months", "Last 1 Month"];
-    const [dataDay, setDataDay] = useState(180);
+    const [dataDay, setDataDay] = useState(365);
     const dataDays = {
         "Last 1 Year": 365,
         "Last 10 Months": 300,
