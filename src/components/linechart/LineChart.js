@@ -17,7 +17,7 @@ const capitalizeFirstLetter = s => s.charAt(0).toUpperCase() + s.slice(1);
 
 function LineChart() {
     const [chartSelector, setChartSelector] = useState("Last 1 Year");
-    const selectorValues = ["Last 10 Months", "Last 8 Months", "Last 6 Months", "Last 3 Months", "Last 1 Month"];
+    const selectorValues = ["Last 10 Months", "Last 8 Months", "Last 6 Months", "Last 3 Months", "Last 1 Month", "Last 1 Week", "Last 3 Days"];
     const [dataDay, setDataDay] = useState(365);
     const dataDays = {
         "Last 1 Year": 365,
@@ -26,6 +26,9 @@ function LineChart() {
         "Last 6 Months": 180,
         "Last 3 Months": 90,
         "Last 1 Month": 30,
+        "Last 1 Week": 7,
+        "Last 3 Days": 3,
+
     }
     const handleChange = (e) => {
         const chartSelector = e.target.value;
@@ -40,11 +43,9 @@ function LineChart() {
                         <Container maxWidth="lg" className="linechart__container">
                             <div className="app__header">
                                 <img className="app__flag" src={context.countryInfo?.countryInfo?.flag ?? "assets/worldFlag.png"} alt="" />
-
                                 <h3 className="app__title--linechart">{capitalizeFirstLetter(context.countryName)}{' '}<span className="app__covid--linechart">{chartSelector}</span></h3>
                                 <FormControl className="app__dropdown app__dropdown--chart" id="chart">
                                     <Select
-
                                         variant="outlined"
                                         id="covid-countries-select"
                                         value={chartSelector}

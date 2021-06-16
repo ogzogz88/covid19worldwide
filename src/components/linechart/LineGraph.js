@@ -91,8 +91,8 @@ function LineGraph({ dataType, countryName, dataDay }) {
                 await axios.get(`https://disease.sh/v3/covid-19/historical/all?lastdays=${dataDay}`)
                     .then(response => response.data)
                     .then(data => {
-                        console.log('line data');
-                        console.log(data);
+                        // console.log('line data');
+                        // console.log(data);
                         const chartData = formatChartData(data, dataType);
                         setData(chartData);
                     });
@@ -100,14 +100,12 @@ function LineGraph({ dataType, countryName, dataDay }) {
                 await axios.get(`https://disease.sh/v3/covid-19/historical/${countryName}?lastdays=${dataDay}`)
                     .then(response => response.data)
                     .then(data => {
-                        console.log('line data');
-                        console.log(data);
+                        // console.log('line data');
+                        // console.log(data);
                         const chartData = formatChartData(data.timeline, dataType);
                         setData(chartData);
                     });
-
             }
-
         }
         getLineData();
     }, [dataType, countryName, dataDay]);
